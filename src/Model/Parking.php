@@ -8,4 +8,9 @@ class Parking
     {
         return 1;
     }
+    
+    public function getWidth()
+    {
+        return 1;
+    }
 }
