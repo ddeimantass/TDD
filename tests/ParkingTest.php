@@ -7,12 +7,6 @@ use Testing\Model\Parking;
 
 class ParkingTest extends TestCase
 {
-    public function testParking()
-    {
-        $parking = new Parking();
-        $this->assertInstanceOf(Parking::class, $parking);
-    }
-    
     public function testLength()
     {
         $parking = new Parking();
