@@ -7,15 +7,44 @@ use Testing\Model\Parking;
 
 class ParkingTest extends TestCase
 {
-    public function testLength()
+    /**
+     * @dataProvider correctSizeProvider
+     */
+    public function testcorrectSize($length, $width, $exepcted)
     {
-        $parking = new Parking();
-        $this->assertEquals(1, $parking->getLength());
+        $parking = new Parking($length, $width);
+        $this->assertEquals($exepcted, $parking->getSize());
     }
     
-    public function testWidth()
+    /**
+     * @dataProvider incorrectSizeProvider
+     * @expectedException InvalidArgumentException
+     */
+    public function testincorrectSize($length, $width)
     {
-        $parking = new Parking();
-        $this->assertEquals(1, $parking->getWidth());
+        new Parking($length, $width);
+    }
+    
+    /**
+     * @return array
+     */
+    public function correctSizeProvider()
+    {
+        return [
+            [20, 30, 600],
+            [1, 1, 1],
+            [99, 99, 9801],
+        ];
+    }
+    
+    /**
+     * @return array
+     */
+    public function incorrectSizeProvider()
+    {
+        return [
+            [0, 30],
+            [-9, 30],
+        ];
     }
 }
