@@ -10,10 +10,11 @@ class ParkingTest extends TestCase
     /**
      * @dataProvider correctSizeProvider
      */
-    public function testcorrectSize($length, $width, $exepcted)
+    public function testcorrectSize($length, $width)
     {
         $parking = new Parking($length, $width);
-        $this->assertEquals($exepcted, $parking->getSize());
+        $this->assertEquals($length, $parking->getLength());
+        $this->assertEquals($width, $parking->getWidth());
     }
     
     /**
@@ -31,9 +32,9 @@ class ParkingTest extends TestCase
     public function correctSizeProvider()
     {
         return [
-            [20, 30, 600],
-            [1, 1, 1],
-            [99, 99, 9801],
+            [20, 30],
+            [1, 1],
+            [99, 99],
         ];
     }
     

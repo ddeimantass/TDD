@@ -8,50 +8,34 @@ use PHPUnit\Framework\TestCase;
 class CarTest extends TestCase
 {
     /**
-     * @dataProvider numberProvider
+     * @dataProvider correctDataProvider
      */
-    public function testGetNumber($number)
+    public function testGetSizeSuccess($number, $length, $width)
     {
-        $car = new Car($number);
+        $car = new Car($number, $length, $width);
         $this->assertEquals($number, $car->getNumber());
-    }
-    
-    /**
-     * @dataProvider correctSizeProvider
-     */
-    public function testGetSizeSuccess($number, $size)
-    {
-        $car = new Car($number, $size);
-        $this->assertEquals($size, $car->getSize());
+        $this->assertEquals($length, $car->getLength());
+        $this->assertEquals($width, $car->getWidth());
     }
     
     /**
      * @dataProvider incorrectDataProvider
      * @expectedException InvalidArgumentException
      */
-    public function testIncorrectData($number, $size)
+    public function testIncorrectData($number, $length, $width)
     {
-        new Car($number, $size);
-    }
-    
-    public function numberProvider()
-    {
-        return [
-            ['DEV 001'],
-            ['DEV 002'],
-            ['TDD 001']
-        ];
+        new Car($number, $length, $width);
     }
     
     /**
      * @return array
      */
-    public function correctSizeProvider()
+    public function correctDataProvider()
     {
         return [
-            ['', 30],
-            ['', 1],
-            ['', 99],
+            ['DEV 001', 30,2],
+            ['DEV 002', 1,1],
+            ['DEV 011', 99,5],
         ];
     }
     
@@ -61,12 +45,13 @@ class CarTest extends TestCase
     public function incorrectDataProvider()
     {
         return [
-            ['', 0],
-            ['', -2],
-            ['', ''],
-            [2, 1],
-            [true, 1],
-            [['ok'], 1],
+            ['', 0, 1],
+            ['', -2, 1],
+            ['', '', 1],
+            [2, 1, 1],
+            [true, 1, 1],
+            [['ok'], 1, 1],
+            ['', 99, 0],
         ];
     }
 }

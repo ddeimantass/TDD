@@ -5,13 +5,15 @@ namespace Testing\Model;
 class Car
 {
     private $number;
-    private $size;
+    private $width;
+    private $length;
     
-    public function __construct($number, $size = 1)
+    public function __construct($number, $length, $width)
     {
-        if($size > 0 && is_string($number)){
+        if(is_string($number) && $length > 0 && $width > 0 ){
             $this->number = $number;
-            $this->size = $size;
+            $this->width = $width;
+            $this->length = $length;
         }
         else{
             throw new \InvalidArgumentException();
@@ -23,8 +25,13 @@ class Car
         return $this->number;
     }
     
-    public function getSize()
+    public function getWidth()
     {
-        return $this->size;
+        return $this->width;
+    }
+    
+    public function getLength()
+    {
+        return $this->length;
     }
 }
