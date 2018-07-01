@@ -11,7 +11,7 @@ class ParkingInfoTest extends TestCase
     public function testParkingSpaceSuccess()
     {
         $parkingInfo = new ParkingInfoProvider();
-        $this->assertEquals(1, $parkingInfo->getSize(1, 1));
-        
+        $parking = new Parking(1,1);
+        $this->assertEquals(1, $parkingInfo->getSize($parking->getWidth(), $parking->getLength()));
     }
 }
