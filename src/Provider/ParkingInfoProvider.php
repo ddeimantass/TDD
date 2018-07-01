@@ -2,8 +2,12 @@
 
 namespace Testing\Provider;
 
+use Testing\Model\Parking;
+
 class ParkingInfoProvider
 {
+    private $SPACE = 1.5;
+    
     /**
      * @return float|int
      */
@@ -13,20 +17,32 @@ class ParkingInfoProvider
     }
     
     /**
+     * @param array $cars
+     * @return array
+     */
+    public function getCarSizes(array $cars){
+        $CarsSize = [];
+        
+        foreach($cars as $car){
+            $CarsSize[] = $this->getSize($car->getWidth(), $car->getLength());
+        }
+        
+        return $CarsSize;
+    }
+    
+    /**
      * @param $parking
      * @param $cars
      * @return int
      */
-    public function getCarSpaces($parking, $cars)
+    public function getCarSpaces(Parking $parking, array $cars)
     {
         $parkingSize = $this->getSize($parking->getWidth(), $parking->getLength());
-        $CarsSize = [];
-        foreach($cars as $car){
-            $CarsSize[] = $this->getSize($car->getWidth(), $car->getLength());
-        }
+        $carSizes = $this->getCarSizes($cars);
         $counter = 0;
-        foreach ($CarsSize as $carSize){
-            $parkingSize -= $carSize * 1.5;
+        
+        foreach ($carSizes as $carSize){
+            $parkingSize -= $carSize * $this->SPACE;
             if($parkingSize <= 0){
                 return $counter;
             }

@@ -9,13 +9,6 @@ use Testing\Provider\ParkingInfoProvider;
 
 class ParkingInfoTest extends TestCase
 {
-    public function testSize()
-    {
-        $parkingInfo = new ParkingInfoProvider();
-        $parking = new Parking(1,1);
-        $this->assertEquals(1, $parkingInfo->getSize($parking->getWidth(), $parking->getLength()));
-    }
-    
     public function testParkingSpace()
     {
         $parkingInfo = new ParkingInfoProvider();
