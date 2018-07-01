@@ -27,6 +27,8 @@ class ParkingInfoProvider
             $CarsSize[] = $this->getSize($car->getWidth(), $car->getLength());
         }
         
+        asort($CarsSize);
+        
         return $CarsSize;
     }
     
