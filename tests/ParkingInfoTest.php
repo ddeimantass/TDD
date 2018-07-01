@@ -24,10 +24,11 @@ class ParkingInfoTest extends TestCase
     public function correctDataProvider()
     {
         $cars =[
+            new Car('bus',2,4),
+            new Car('mid',1,2),
             new Car('small',1,1),
             new Car('suv',2,2),
-            new Car('mid',1,2),
-            new Car('bus',2,4),
+            
         ];
         
         $parkings =[
